@@ -1,4 +1,4 @@
-package com.example.gptkeys.ui.notifications
+package com.example.gptkeys.ui.about
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.gptkeys.databinding.FragmentNotificationsBinding
+import com.example.gptkeys.databinding.FragmentAboutBinding
 
-class NotificationsFragment : Fragment() {
+class AboutFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentAboutBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,14 +23,18 @@ class NotificationsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View {
         val notificationsViewModel =
-                ViewModelProvider(this).get(NotificationsViewModel::class.java)
+                ViewModelProvider(this).get(AboutViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentAboutBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val textViewHaydon: TextView = binding.textHaydon
+        val textViewNeal: TextView = binding.textNeal
+        notificationsViewModel.texthaydon.observe(viewLifecycleOwner) {
+            textViewHaydon.text = it
+        }
+        notificationsViewModel.textneal.observe(viewLifecycleOwner) {
+            textViewNeal.text = it
         }
         return root
     }
